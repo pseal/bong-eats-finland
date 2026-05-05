@@ -555,3 +555,44 @@
       height: 230px !important;
     }
   }
+
+  /* ── BACK TO TOP ── */
+  #toTopBtn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 200;
+    background: var(--saffron);
+    color: var(--midnight);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(232,146,42,0.35);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #toTopBtn.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+  #toTopBtn:hover { background: var(--turmeric); }
+
+  @media (max-width: 600px) {
+    #toTopBtn {
+      bottom: 1.2rem;
+      right: 1.2rem;
+      width: 42px;
+      height: 42px;
+      font-size: 1.1rem;
+    }
+  }

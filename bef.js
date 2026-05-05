@@ -135,3 +135,19 @@
     box.style.borderColor = '#E8922A';
     setTimeout(() => box.style.borderColor = 'rgba(232,146,42,0.2)', 1500);
   }
+
+// ── Back to Top ──
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('toTopBtn');
+    if (btn) {
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }
+  });
