@@ -44,6 +44,10 @@
     msg += `🚗 *Type:* ${type}\n`;
     if (time) msg += `🕐 *Date/Time:* ${new Date(time).toLocaleString('en-FI', { dateStyle: 'full', timeStyle: 'short' })}\n`;
     if (address) msg += `📍 *Address:* ${address}\n`;
+    const distEl = document.getElementById('deliveryDistance');
+    const distVal = distEl ? distEl.value : '';
+    const chargeMap = { '15': '€5.00', '25': '€7.00', 'far': '€10.00', 'intercity': 'To be agreed' };
+    if (distVal) msg += `🚗 *Delivery Charge:* ${chargeMap[distVal] || ''}\n`;
     msg += `\n🛒 *Order:*\n${items}\n`;
     if (notes) msg += `\n📝 *Notes:* ${notes}`;
 
@@ -91,28 +95,33 @@
   }
 
   function setWeekendDatetime() {
-    const dt = getNextWeekend();
-    const input = document.getElementById('orderTime');
-    input.value = `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}T${pad(dt.getHours())}:00`;
+  const dt = getNextWeekend();
+  const input = document.getElementById('orderTime');
+  input.value = `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}T${pad(dt.getHours())}:00`;
 
-    // Block weekdays and times before 11:00 on change
-    input.addEventListener('change', function() {
-      const chosen = new Date(this.value);
-      const d = chosen.getDay();
-      const h = chosen.getHours();
-      if (d !== 0 && d !== 6) {
-        alert('⚠️ We only deliver on weekends (Saturday & Sunday). Please select a weekend date.');
-        const fixed = getNextWeekend();
-        this.value = `${fixed.getFullYear()}-${pad(fixed.getMonth()+1)}-${pad(fixed.getDate())}T${pad(fixed.getHours())}:00`;
-      } else if (h < 11) {
-        alert('⚠️ Deliveries start from 11:00 AM. Setting time to 11:00 AM.');
+  input.addEventListener('change', function() {
+    const chosen = new Date(this.value);
+    const d = chosen.getDay();
+    const h = chosen.getHours();
+    const note = document.getElementById('weekdayNote');
+
+    if (d !== 0 && d !== 6) {
+      // Weekday selected — show soft warning, auto-jump to next weekend
+      note.style.display = 'block';
+      const fixed = getNextWeekend();
+      this.value = `${fixed.getFullYear()}-${pad(fixed.getMonth()+1)}-${pad(fixed.getDate())}T${pad(fixed.getHours())}:00`;
+    } else {
+      note.style.display = 'none';
+      // Weekend but before 11am
+      if (h < 11) {
         chosen.setHours(11, 0, 0, 0);
         this.value = `${chosen.getFullYear()}-${pad(chosen.getMonth()+1)}-${pad(chosen.getDate())}T11:00`;
       }
+    }
     });
   }
 
-      setWeekendDatetime();
+setWeekendDatetime();
 
   // ── Add to Order ──
   function addToOrder(item, qtyId) {
@@ -177,6 +186,33 @@
     box.style.borderColor = '#E8922A';
     setTimeout(() => box.style.borderColor = 'rgba(232,146,42,0.2)', 1500);
   }
+
+  // ── Delivery charge logic ──
+  function updateDeliveryCharge() {
+    const type = document.getElementById('orderType').value;
+    const distGroup = document.getElementById('distanceGroup');
+    if (type === 'Delivery') {
+      distGroup.style.display = '';
+    } else {
+      distGroup.style.display = 'none';
+      document.getElementById('chargeDisplay').textContent = '';
+    }
+  }
+
+  function showDeliveryCharge() {
+    const val = document.getElementById('deliveryDistance').value;
+    const display = document.getElementById('chargeDisplay');
+    const charges = {
+      '15': '✅ Delivery charge: €5.00',
+      '25': '✅ Delivery charge: €7.00',
+      'far': '✅ Delivery charge: €10.00',
+      'intercity': '💬 Inter-city delivery — we will confirm the rate with you via WhatsApp.'
+    };
+    display.textContent = charges[val] || '';
+  }
+
+// Show distance selector when delivery type changes
+  document.getElementById('orderType').addEventListener('change', updateDeliveryCharge);
 
 // ── Back to Top ──
   function scrollToTop() {

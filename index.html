@@ -368,15 +368,36 @@
         <div class="form-group">
           <label class="form-label">Preferred Date & Time</label>
           <input type="datetime-local" class="form-input" id="orderTime" min="" step="3600">
-          <small style="color:rgba(250,243,224,0.4); font-size:0.7rem; margin-top:0.3rem;">
+          <small style="color:rgba(250,243,224,0.4); font-size:0.7rem; margin-top:0.3rem; display:block;">
             ⏰ Weekend deliveries only (Sat & Sun), from 11:00 AM onwards
           </small>
+          <div id="weekdayNote" style="display:none; margin-top:0.6rem; padding:0.7rem 1rem; background:rgba(232,146,42,0.08); border-left:3px solid var(--saffron); font-size:0.78rem; color:rgba(250,243,224,0.75); line-height:1.6;">
+            📅 We've moved your date to the next available weekend slot.<br>
+            Want to order on a weekday? <a href="https://wa.me/358465823763" target="_blank" style="color:var(--saffron); text-decoration:underline;">Chat with Bong Eats Finland on WhatsApp</a> and we'll see what we can do! 🍛
+          </div>
         </div>
       </div>
 
       <div class="form-group">
         <label class="form-label">Delivery Address (if applicable)</label>
-        <input type="text" class="form-input" id="orderAddress" placeholder="Street, city, postal code — leave blank for pickup">
+        <input type="text" class="form-input" id="orderAddress" placeholder="Street, city, postal code — leave blank for pickup" oninput="updateDeliveryCharge()">
+        <div id="deliveryInfo" style="margin-top:0.5rem; font-size:0.78rem; color:rgba(250,243,224,0.5); font-style:italic; line-height:1.6;">
+          🚗 Delivery charge: <strong style="color:var(--saffron);">Up to 15 km → €5 &nbsp;|&nbsp; 15–25 km → €7 &nbsp;|&nbsp; 25km+ → €10</strong><br>
+          🏙️ Inter-city delivery rate will be agreed separately via WhatsApp.
+        </div>
+        <div id="deliveryTypeNote" style="display:none; margin-top:0.4rem; padding:0.6rem 0.8rem; background:rgba(232,146,42,0.08); border-left:2px solid var(--saffron); font-size:0.78rem; color:rgba(250,243,224,0.7);"></div>
+      </div>
+
+      <div class="form-group" id="distanceGroup" style="display:none;">
+        <label class="form-label">Approximate Distance from Viherlaakso Espoo</label>
+        <select class="form-select" id="deliveryDistance" onchange="showDeliveryCharge()">
+          <option value="">— Select distance —</option>
+          <option value="15">Up to 15 km → €5.00</option>
+          <option value="25">15 – 25 km → €7.00</option>
+          <option value="far">25 km+ (within city) → €10.00</option>
+          <option value="intercity">Inter-city → Rate agreed via WhatsApp</option>
+        </select>
+        <div id="chargeDisplay" style="margin-top:0.4rem; font-size:0.8rem; color:var(--saffron); font-weight:500;"></div>
       </div>
 
       <div class="form-group">
