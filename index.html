@@ -15,11 +15,14 @@
   <div class="nav-logo">
     <img src="1777834721676_image.png" alt="Bong Eats Finland">
   </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#order" class="nav-order-btn">Order Now</a></li>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="toggleMenu()">About</a></li>
+    <li><a href="#menu" onclick="toggleMenu()">Menu</a></li>
+    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+    <li><a href="#order" onclick="toggleMenu()" class="nav-order-btn">Order Now</a></li>
   </ul>
 </nav>
 
