@@ -65,12 +65,54 @@
     }
   });
 
-  // ── Set default datetime to now + 2 hours ──
-  const dt = new Date(Date.now() + 2 * 3600 * 1000);
-  dt.setMinutes(0, 0, 0);
+  // ── Weekend-only datetime setup ──
   const pad = n => String(n).padStart(2, '0');
-  document.getElementById('orderTime').value =
-    `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}T${pad(dt.getHours())}:00`;
+
+  function getNextWeekend() {
+    const now = new Date();
+    const day = now.getDay(); // 0=Sun, 6=Sat
+    let daysAhead = 0;
+    if (day === 6) daysAhead = 0; // today is Saturday
+    else if (day === 0) daysAhead = 0; // today is Sunday
+    else daysAhead = 6 - day; // next Saturday
+
+    const next = new Date(now);
+    next.setDate(now.getDate() + daysAhead);
+
+    // If it's weekend but before 11am, set to 11am same day
+    // If it's weekend and after 11am, set to next hour
+    if (daysAhead === 0) {
+      const hour = now.getHours();
+      next.setHours(hour < 11 ? 11 : hour + 1, 0, 0, 0);
+    } else {
+      next.setHours(11, 0, 0, 0);
+    }
+    return next;
+  }
+
+  function setWeekendDatetime() {
+    const dt = getNextWeekend();
+    const input = document.getElementById('orderTime');
+    input.value = `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}T${pad(dt.getHours())}:00`;
+
+    // Block weekdays and times before 11:00 on change
+    input.addEventListener('change', function() {
+      const chosen = new Date(this.value);
+      const d = chosen.getDay();
+      const h = chosen.getHours();
+      if (d !== 0 && d !== 6) {
+        alert('⚠️ We only deliver on weekends (Saturday & Sunday). Please select a weekend date.');
+        const fixed = getNextWeekend();
+        this.value = `${fixed.getFullYear()}-${pad(fixed.getMonth()+1)}-${pad(fixed.getDate())}T${pad(fixed.getHours())}:00`;
+      } else if (h < 11) {
+        alert('⚠️ Deliveries start from 11:00 AM. Setting time to 11:00 AM.');
+        chosen.setHours(11, 0, 0, 0);
+        this.value = `${chosen.getFullYear()}-${pad(chosen.getMonth()+1)}-${pad(chosen.getDate())}T11:00`;
+      }
+    });
+  }
+
+      setWeekendDatetime();
 
   // ── Add to Order ──
   function addToOrder(item, qtyId) {

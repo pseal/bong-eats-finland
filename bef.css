@@ -483,9 +483,17 @@
       list-style: none;
       padding: 0;
     }
-    .nav-links.open { display: flex; }
+    .nav-links.open {
+      display: flex;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 2rem;
+    }
     .nav-links a { font-size: 1.3rem; letter-spacing: 0.14em; opacity: 1; }
     .nav-order-btn { padding: 0.8rem 2rem !important; font-size: 1rem !important; }
+
+    .nav-links a::after { display: none; }
+    .nav-links li { width: 100%; text-align: center; }
 
     /* Hero */
     #hero { padding: 5rem 1.2rem 3rem; }
