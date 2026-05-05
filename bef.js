@@ -69,59 +69,122 @@
     }
   });
 
-  // ── Weekend-only datetime setup ──
-  const pad = n => String(n).padStart(2, '0');
+  // ── Custom Weekend Calendar ──
+        const pad = n => String(n).padStart(2, '0');
+        let calCurrentMonth = new Date();
+        calCurrentMonth.setDate(1);
+        let calSelectedDate = null;
 
-  function getNextWeekend() {
-    const now = new Date();
-    const day = now.getDay(); // 0=Sun, 6=Sat
-    let daysAhead = 0;
-    if (day === 6) daysAhead = 0; // today is Saturday
-    else if (day === 0) daysAhead = 0; // today is Sunday
-    else daysAhead = 6 - day; // next Saturday
+        function toggleCalendar() {
+          const cal = document.getElementById('customCal');
+          const isOpen = cal.style.display !== 'none';
+          cal.style.display = isOpen ? 'none' : 'block';
+          if (!isOpen) renderCalendar();
+        }
 
-    const next = new Date(now);
-    next.setDate(now.getDate() + daysAhead);
+        function changeMonth(dir) {
+          calCurrentMonth.setMonth(calCurrentMonth.getMonth() + dir);
+          // Don't go back before current month
+          const now = new Date();
+          if (calCurrentMonth.getFullYear() < now.getFullYear() ||
+            (calCurrentMonth.getFullYear() === now.getFullYear() && calCurrentMonth.getMonth() < now.getMonth())) {
+            calCurrentMonth = new Date();
+            calCurrentMonth.setDate(1);
+          }
+          renderCalendar();
+        }
 
-    // If it's weekend but before 11am, set to 11am same day
-    // If it's weekend and after 11am, set to next hour
-    if (daysAhead === 0) {
-      const hour = now.getHours();
-      next.setHours(hour < 11 ? 11 : hour + 1, 0, 0, 0);
-    } else {
-      next.setHours(11, 0, 0, 0);
-    }
-    return next;
-  }
+        function renderCalendar() {
+          const label = document.getElementById('calMonthLabel');
+          const grid = document.getElementById('calDays');
+          const now = new Date();
+          const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  function setWeekendDatetime() {
-  const dt = getNextWeekend();
-  const input = document.getElementById('orderTime');
-  input.value = `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}T${pad(dt.getHours())}:00`;
+          const year = calCurrentMonth.getFullYear();
+          const month = calCurrentMonth.getMonth();
+          label.textContent = new Date(year, month, 1).toLocaleDateString('en-FI', { month: 'long', year: 'numeric' });
 
-  input.addEventListener('change', function() {
-    const chosen = new Date(this.value);
-    const d = chosen.getDay();
-    const h = chosen.getHours();
-    const note = document.getElementById('weekdayNote');
+          // First day of month (convert Sun=0 to Mon=0 grid)
+          let firstDay = new Date(year, month, 1).getDay();
+          firstDay = firstDay === 0 ? 6 : firstDay - 1;
 
-    if (d !== 0 && d !== 6) {
-      // Weekday selected — show soft warning, auto-jump to next weekend
-      note.style.display = 'block';
-      const fixed = getNextWeekend();
-      this.value = `${fixed.getFullYear()}-${pad(fixed.getMonth()+1)}-${pad(fixed.getDate())}T${pad(fixed.getHours())}:00`;
-    } else {
-      note.style.display = 'none';
-      // Weekend but before 11am
-      if (h < 11) {
-        chosen.setHours(11, 0, 0, 0);
-        this.value = `${chosen.getFullYear()}-${pad(chosen.getMonth()+1)}-${pad(chosen.getDate())}T11:00`;
-      }
-    }
-    });
-  }
+          const daysInMonth = new Date(year, month + 1, 0).getDate();
+          grid.innerHTML = '';
 
-setWeekendDatetime();
+          // Empty cells before first day
+          for (let i = 0; i < firstDay; i++) {
+            grid.innerHTML += `<div></div>`;
+          }
+
+          for (let d = 1; d <= daysInMonth; d++) {
+            const date = new Date(year, month, d);
+            const dayOfWeek = date.getDay(); // 0=Sun, 6=Sat
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+            const isPast = date < today;
+            const isSelected = calSelectedDate &&
+              date.toDateString() === calSelectedDate.toDateString();
+
+            if (isWeekend && !isPast) {
+              // Clickable weekend
+              grid.innerHTML += `
+                <div onclick="selectDate(${year},${month},${d})"
+                  style="text-align:center; padding:0.45rem 0.2rem; cursor:pointer; border-radius:2px; font-size:0.85rem;
+                  background:${isSelected ? 'var(--saffron)' : 'rgba(232,146,42,0.12)'};
+                  color:${isSelected ? 'var(--midnight)' : 'var(--saffron)'};
+                  font-weight:${isSelected ? '700' : '500'};
+                  transition: background 0.2s;"
+                  onmouseover="this.style.background='rgba(232,146,42,0.3)'"
+                  onmouseout="this.style.background='${isSelected ? 'var(--saffron)' : 'rgba(232,146,42,0.12)'}'">
+                  ${d}
+                </div>`;
+            } else {
+              // Greyed out weekday or past date
+              grid.innerHTML += `
+                <div style="text-align:center; padding:0.45rem 0.2rem; font-size:0.85rem;
+                  color:rgba(250,243,224,0.15); cursor:default;">
+                  ${d}
+                </div>`;
+            }
+          }
+        }
+
+        function selectDate(year, month, day) {
+          calSelectedDate = new Date(year, month, day);
+          renderCalendar(); // re-render to highlight selected
+          document.getElementById('calTimeRow').style.display = 'block';
+          document.getElementById('calTime').value = '';
+          document.getElementById('calDisplay').style.color = 'rgba(250,243,224,0.5)';
+          document.getElementById('calDisplay').textContent =
+            calSelectedDate.toLocaleDateString('en-FI', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) + ' — pick a time ↓';
+        }
+
+        function confirmDateTime() {
+          const time = document.getElementById('calTime').value;
+          if (!time || !calSelectedDate) return;
+
+          const dateStr = `${calSelectedDate.getFullYear()}-${pad(calSelectedDate.getMonth()+1)}-${pad(calSelectedDate.getDate())}T${time}`;
+          document.getElementById('orderTime').value = dateStr;
+
+          const display = calSelectedDate.toLocaleDateString('en-FI', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+          const [h, m] = time.split(':');
+          const hour = parseInt(h);
+          const ampm = hour >= 12 ? 'PM' : 'AM';
+          const hour12 = hour > 12 ? hour - 12 : hour;
+          document.getElementById('calDisplay').textContent = `${display} at ${hour12}:${m} ${ampm}`;
+          document.getElementById('calDisplay').style.color = 'var(--cream)';
+          document.getElementById('customCal').style.display = 'none';
+        }
+
+        // Close calendar on outside click
+        document.addEventListener('click', function(e) {
+          const cal = document.getElementById('customCal');
+          const trigger = document.getElementById('calTrigger');
+          if (cal && trigger && !cal.contains(e.target) && !trigger.contains(e.target)) {
+            cal.style.display = 'none';
+          }
+        });
+
+        renderCalendar();
 
   // ── Add to Order ──
   function addToOrder(item, qtyId) {
