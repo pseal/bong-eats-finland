@@ -423,6 +423,11 @@
   .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--saffron); font-weight: 900; }
   .footer-copy { font-size: 1.1rem; color: rgba(250,243,224,0.3); letter-spacing: 0.06em; }
 
+  /* ── LANGUAGE TOGGLE ── */
+  #langToggle:hover {
+    background: rgba(232,146,42,0.2);
+  }
+
   /* ── HAMBURGER ── */
   .hamburger {
     display: none;
