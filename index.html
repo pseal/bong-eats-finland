@@ -100,8 +100,12 @@
       <div class="item-name">Sorshe Ilish <span class="item-tag" data-en="Signature" data-fi="Erikoisuus">Signature</span></div>
       <div class="item-desc" data-en="Hilsa fish steamed in a pungent mustard sauce — the crown jewel of Bengali cooking." data-fi="Hilsa-kala höyrytettynä pistävässä sinappikasteikkeessa — bengalilaisen keittiön kruununjalokivi.">Hilsa fish steamed in a pungent mustard sauce — the crown jewel of Bengali cooking.</div>
       <div class="item-price">€12.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_sorshe" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_sorshe',-1)">−</button>
+          <input type="number" id="qty_sorshe" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_sorshe',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Sorshe Ilish – €12.00','qty_sorshe')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -111,8 +115,12 @@
       <div class="item-name">Kosha Mangsho</div>
       <div class="item-desc" data-en="Slow-braised mutton in a dark, caramelised onion and spice gravy. Weekend special." data-fi="Hitaasti haudutettu lampaanliha tummassa, karamellisoitujen sipulien ja mausteiden kastikkeessa. Viikonlopun erikoisuus.">Slow-braised mutton in a dark, caramelised onion and spice gravy. Weekend special.</div>
       <div class="item-price">€10.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_kosha" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_kosha',-1)">−</button>
+          <input type="number" id="qty_kosha" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_kosha',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Kosha Mangsho – €10.00','qty_kosha')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -122,9 +130,13 @@
       <div class="item-name">Chingri Malai Curry</div>
       <div class="item-desc" data-en="Plump prawns simmered in a velvety coconut milk and turmeric gravy." data-fi="Mehevät katkaravut haudutettuna samettisessa kookosmaito- ja kurkumakastikkeessa.">Plump prawns simmered in a velvety coconut milk and turmeric gravy.</div>
       <div class="item-price">€9.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_cmc" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
-        <button type="button" onclick="addToOrder('Chingri Malai Curry – €9.00','qty_cmc')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_cmc',-1)">−</button>
+          <input type="number" id="qty_cmc" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_cmc',1)">+</button>
+        </div>
+        <button type="button" onclick="addToOrder('Chingri Malai Curry – €9.00','qty_cmc)" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
 
@@ -133,8 +145,12 @@
       <div class="item-name">Mutton Biryani</div>
       <div class="item-desc" data-en="Fragrant basmati rice slow-cooked with tender mutton, whole spices, caramelised onions, a golden potato, and an egg — the Kolkata way." data-fi="Tuoksuva basmatiriisi hitaasti kypsennetty murean lampaan, kokonaisten mausteiden, karamellisoitujen sipulien, kultaisen perunan ja munan kanssa — Kolkatan tyyliin.">Fragrant basmati rice slow-cooked with tender mutton, whole spices, caramelised onions, a golden potato, and an egg — the Kolkata way.</div>
       <div class="item-price">€13.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_mb" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_mb',-1)">−</button>
+          <input type="number" id="qty_mb" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_mb',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Mutton Biryani – €13.00','qty_mb')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -144,8 +160,12 @@
       <div class="item-name">Rui (Rohu) Kalia</div>
       <div class="item-desc" data-en="Rohu fish slow-cooked in a rich, golden gravy of ginger, cumin, and whole spices — a festive Bengali classic." data-fi="Rohu-kala hitaasti kypsennetty rikkaassa, kultaisessa inkivääri-, kumina- ja kokonaisten mausteiden kastikkeessa — bengalilainen juhlaklassikko.">Rohu fish slow-cooked in a rich, golden gravy of ginger, cumin, and whole spices — a festive Bengali classic.</div>
       <div class="item-price">€8.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_rk" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_rk',-1)">−</button>
+          <input type="number" id="qty_rk" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_rk',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Rui (Rohu) Kalia – €8.00','qty_rk')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -155,8 +175,12 @@
       <div class="item-name">Chicken Maharani</div>
       <div class="item-desc" data-en="Tender chicken slow-cooked in a regal blend of aromatic spices, rich cashew paste, and cream — a dish fit for royalty." data-fi="Murea kana hitaasti kypsennetty kuninkaallisessa aromaattisten mausteiden, rikkaan cashewpastan ja kerman sekoituksessa.">Tender chicken slow-cooked in a regal blend of aromatic spices, rich cashew paste, and cream — a dish fit for royalty.</div>
       <div class="item-price">€9.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_rani" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_rani',-1)">−</button>
+          <input type="number" id="qty_rani" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_rani',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Chicken Maharani – €9.00','qty_rani')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -166,8 +190,12 @@
       <div class="item-name">Dhokar Dalna</div>
       <div class="item-desc" data-en="Crispy lentil cakes simmered in a fragrant golden gravy — a uniquely Bengali vegetarian dish full of soul." data-fi="Rapeita linssipiirakoita haudutettuna tuoksuvassa kultaisessa kastikkeessa — ainutlaatuinen bengalilainen kasvisruoka.">Crispy lentil cakes simmered in a fragrant golden gravy — a uniquely Bengali vegetarian dish full of soul.</div>
       <div class="item-price">€6.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_dhoka" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_dhoka',-1)">−</button>
+          <input type="number" id="qty_dhoka min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_dhoka',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Dhokar Dalna – €6.00','qty_dhoka')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -177,8 +205,12 @@
       <div class="item-name">Veg Chop</div>
       <div class="item-desc" data-en="Golden-fried breadcrumb-coated croquettes stuffed with spiced vegetables — crispy outside, soft within." data-fi="Kultaiseksi paistetut kroketit täytetty mausteisilla kasviksilla — rapea ulkoa, pehmeä sisältä.">Golden-fried breadcrumb-coated croquettes stuffed with spiced vegetables — crispy outside, soft within.</div>
       <div class="item-price">€3.00/pc</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_vc" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_vc',-1)">−</button>
+          <input type="number" id="qty_vc" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_vc',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Veg Chop – €3.00','qty_vc')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -188,8 +220,12 @@
       <div class="item-name">Luchi - Aloo Dam</div>
       <div class="item-desc" data-en="Pillowy deep-fried pooris with slow-cooked spiced potato curry — the ultimate Bengali Sunday comfort." data-fi="Pehmeät uppopaistetut purit hitaasti keitetyn mausteisen perunacurryn kanssa — bengalilaisen sunnuntain lohdutus.">Pillowy deep-fried pooris with slow-cooked spiced potato curry — the ultimate Bengali Sunday comfort.</div>
       <div class="item-price">€8.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_luchi" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_luchi',-1)">−</button>
+          <input type="number" id="qty_luchi" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_luchi',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Luchi - Aloo Dam – €8.00','qty_luchi')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -199,9 +235,13 @@
       <div class="item-name">Alur Dum</div>
       <div class="item-desc" data-en="Baby potatoes slow-cooked in a fiery, tangy tomato and spice gravy — humble but punchy." data-fi="Pieniä perunoita hitaasti kypsennetty tulisessa tomaatti- ja mausteliemessä — nöyrä mutta voimakas.">Baby potatoes slow-cooked in a fiery, tangy tomato and spice gravy — humble but punchy.</div>
       <div class="item-price">€4.00</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_alurdum" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
-        <button type="button" onclick="addToOrder('Alur Dum – €4.00','qty_alurdum')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_alurdum',-1)">−</button>
+          <input type="number" id="qty_alurdum min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_alurdum',1)">+</button>
+        </div>
+        <button type="button" onclick="addToOrder('Alur Dum – €4.00','qty_alurdum)" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
 
@@ -210,8 +250,12 @@
       <div class="item-name">Dimer (Egg) Devil</div>
       <div class="item-desc" data-en="Boiled eggs coated in a spiced vegetable layer, crumbed and fried to golden perfection." data-fi="Keitetyt munat päällystetty mausteisella kasviskerroksella, korppujauhotettu ja paistettu kultaiseen täydellisyyteen.">Boiled eggs coated in a spiced vegetable layer, crumbed and fried to golden perfection.</div>
       <div class="item-price">€4.00/pc</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_eggdevil" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_eggdevil',-1)">−</button>
+          <input type="number" id="qty_eggdevil" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_eggdevil',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Dimer (Egg) Devil – €4.00','qty_eggdevil')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -220,9 +264,13 @@
       <img src="kalojam.jpg" style="width:100%;height:auto;object-fit:contain;border-radius:2px;margin-bottom:0.6rem;">
       <div class="item-name">Kalojam</div>
       <div class="item-desc" data-en="Deep-fried cottage cheese dumplings soaked in sugar syrup — dark as midnight and melt-in-your-mouth sweet." data-fi="Uppopaistetut rahkanyytit sokerisiirappiin liotettuna — yön mustia ja suussa sulavia.">Deep-fried cottage cheese dumplings soaked in sugar syrup — dark as midnight and melt-in-your-mouth sweet.</div>
-      <div class="item-price">€1.00/pc</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_kalojam" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div class="item-price">€1.00</div>
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_kalojam',-1)">−</button>
+          <input type="number" id="qty_kalojam" min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_kalojam',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Kalojam – €1.00','qty_kalojam')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>
@@ -231,9 +279,13 @@
       <img src="bhapa_sandesh.jpg" style="width:100%;height:auto;object-fit:contain;border-radius:2px;margin-bottom:0.6rem;">
       <div class="item-name">Bhapa Sandesh</div>
       <div class="item-desc" data-en="Steamed cottage cheese sweetened with sugar and cardamom — delicate and melt-in-the-mouth." data-fi="Höyrytetty rahka makeutettuna sokerilla ja kardamomilla — herkkä ja suussa sulava.">Steamed cottage cheese sweetened with sugar and cardamom — delicate and melt-in-the-mouth.</div>
-      <div class="item-price">€2.50/pc</div>
-      <div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:center;">
-        <input type="number" id="qty_bhapa" min="1" max="50" value="1" style="width:60px;padding:0.45rem;background:rgba(26,58,42,0.4);border:1px solid rgba(232,146,42,0.2);color:var(--cream);font-size:0.88rem;text-align:center;border-radius:1px;outline:none;">
+      <div class="item-price">€2.50</div>
+      <div style="display:flex;gap:0.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="qty-stepper">
+          <button type="button" onclick="stepQty('qty_bhapa',-1)">−</button>
+          <input type="number" id="qty_bhapa min="1" max="50" value="1">
+          <button type="button" onclick="stepQty('qty_bhapa',1)">+</button>
+        </div>
         <button type="button" onclick="addToOrder('Bhapa Sandesh – €2.50','qty_bhapa')" class="add-btn" data-en="+ Add to Order" data-fi="+ Lisää tilaukseen">+ Add to Order</button>
       </div>
     </div>

@@ -345,3 +345,11 @@
       btn.classList.toggle('visible', window.scrollY > 400);
     }
   });
+
+  // ── Qty Stepper ──
+function stepQty(id, dir) {
+  const input = document.getElementById(id);
+  const current = parseInt(input.value) || 1;
+  const next = Math.min(50, Math.max(1, current + dir));
+  input.value = next;
+}

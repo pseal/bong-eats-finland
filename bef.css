@@ -609,3 +609,48 @@
       font-size: 1.1rem;
     }
   }
+
+  /* ── QTY STEPPER ── */
+  .qty-stepper {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid rgba(232,146,42,0.25);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .qty-stepper button {
+    background: rgba(232,146,42,0.12);
+    border: none;
+    color: var(--saffron);
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .qty-stepper button:hover { background: rgba(232,146,42,0.28); }
+  .qty-stepper input {
+    width: 44px !important;
+    height: 36px;
+    text-align: center;
+    background: rgba(26,58,42,0.5) !important;
+    border: none !important;
+    border-left: 1px solid rgba(232,146,42,0.2) !important;
+    border-right: 1px solid rgba(232,146,42,0.2) !important;
+    color: var(--cream) !important;
+    font-size: 0.9rem;
+    outline: none;
+    -moz-appearance: textfield;
+  }
+  .qty-stepper input::-webkit-outer-spin-button,
+  .qty-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  @media (max-width: 600px) {
+    .qty-stepper button { width: 40px; height: 40px; font-size: 1.2rem; }
+    .qty-stepper input { width: 48px !important; height: 40px; font-size: 1rem; }
+  }
